@@ -7,8 +7,9 @@ public class Movement : MonoBehaviour
     // Start is called before the first frame update
     public float speed = 1f;
     public bool stop = false;
-    public GameObject direction; //for rotation of the direction indicator
-    public GameObject directionEnd; //for calculation of the movement direction
+    public GameObject spaceman, // the sprite of player
+    direction, // the sprite for direction indication
+    directionEnd; //for calculation of the movement direction
 
     public enum State { idle = 0, flying };
     public State state;
@@ -57,7 +58,7 @@ public class Movement : MonoBehaviour
         if (flyDirection != Vector2.zero)
         {
             float angle = Mathf.Atan2(flyDirection.y, flyDirection.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            spaceman.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         }
         print("previous velocity: " + GetComponent<Rigidbody2D>().velocity.magnitude);
