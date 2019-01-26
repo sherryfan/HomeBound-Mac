@@ -9,9 +9,10 @@ public class Movement : MonoBehaviour
     public bool stop = false;
     public GameObject spaceman, // the sprite of player
     direction, // the sprite for direction indication
-    directionEnd; //for calculation of the movement direction
+    directionEnd, //for calculation of the movement direction
+    EndGameUI; 
 
-    public enum State { idle = 0, flying };
+    public enum State { idle = 0, preparing, flying };
     public State state;
     public bool isRotating = false;
 
@@ -29,7 +30,6 @@ public class Movement : MonoBehaviour
         {
             //print("space down");
             isRotating = true;
-
         }
 
         if (Input.GetKeyUp("space"))
@@ -52,7 +52,7 @@ public class Movement : MonoBehaviour
 
     void Fly()
     {
-        Vector2 flyDirection = transform.position - directionEnd.transform.position;
+        Vector2 flyDirection = spaceman.transform.position - directionEnd.transform.position;
         rb.AddForce(flyDirection * speed);
         state = State.flying;
         if (flyDirection != Vector2.zero)
@@ -70,6 +70,17 @@ public class Movement : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
             state = State.idle;
+            // adjust to perpendicular position
+            
         }
+
+        if (other.gameObject.tag == "Death")
+        {
+            rb.velocity = Vector2.zero;
+            state = State.idle;
+            //Game Over
+            EndGameUI.SetActive(true);
+        }
+
     }
 }
