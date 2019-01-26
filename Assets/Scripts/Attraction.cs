@@ -23,7 +23,7 @@ public class Attraction : MonoBehaviour
 
     void Update()
     {
-        if (distance <= 3f)
+        if (distance <= 3f && movement.state == TestMovement.State.idle)
         {
             this.gameObject.GetComponent<SpringJoint2D>().enabled = true;
         }
