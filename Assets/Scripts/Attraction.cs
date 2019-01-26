@@ -19,7 +19,7 @@ public class Attraction : MonoBehaviour
     [SerializeField]
     Vector2 direction;
 
-    public Movement movement;
+    public TestMovement movement;
 
     void Update()
     {
@@ -29,7 +29,7 @@ public class Attraction : MonoBehaviour
         }
         distance = Vector2.Distance(anotherPlayer.transform.position, transform.position);
         direction = anotherPlayer.transform.position - transform.position;
-        release_attract();
+        Release_attract();
     }
 
     void FixedUpdate()
@@ -37,31 +37,33 @@ public class Attraction : MonoBehaviour
         if(distance > 3f)
         {
             this.gameObject.GetComponent<SpringJoint2D>().enabled = false;
-            attract();
+            Attract();
         }
     }
 
-    private void attract()
+    private void Attract()
     {
         if (this.gameObject.name == "PlayerA")
         {
-            if (Input.GetKey(KeyCode.K) && movement.state == Movement.State.idle) //Only Could Press on Idle
+            if (Input.GetKey(KeyCode.K) && movement.state == TestMovement.State.idle && anotherPlayer.GetComponent<TestMovement>().state != TestMovement.State.idle) //Only Could Press on Idle
             {
                 anotherPlayer.GetComponent<Rigidbody2D>().AddForce(-direction * velocity);
                 this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+                print("PlayerA attracts");
             }
         }
         else
         {
-            if (Input.GetKey(KeyCode.J) && movement.state == Movement.State.idle) //Only Could Press on Idle
+            if (Input.GetKey(KeyCode.J) && movement.state == TestMovement.State.idle && anotherPlayer.GetComponent<TestMovement>().state != TestMovement.State.idle) //Only Could Press on Idle
             {
                 anotherPlayer.GetComponent<Rigidbody2D>().AddForce(-direction * velocity);
                 this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+                print("PlayerB attracts");
             }
         }
     }
 
-    private void release_attract()
+    private void Release_attract()
     {
         if (this.gameObject.name == "PlayerA")
         {
