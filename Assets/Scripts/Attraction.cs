@@ -43,7 +43,7 @@ public class Attraction : MonoBehaviour
 
     private void attract()
     {
-        if (this.gameObject.name == "Circle1")
+        if (this.gameObject.name == "PlayerA")
         {
             if (Input.GetKey(KeyCode.K) && movement.state == Movement.State.idle) //Only Could Press on Idle
             {
@@ -63,7 +63,7 @@ public class Attraction : MonoBehaviour
 
     private void release_attract()
     {
-        if (this.gameObject.name == "Circle1")
+        if (this.gameObject.name == "PlayerA")
         {
             if (Input.GetKeyUp(KeyCode.K))
             {
