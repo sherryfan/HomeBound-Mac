@@ -45,7 +45,7 @@ public class Attraction : MonoBehaviour
     {
         if (this.gameObject.name == "PlayerA")
         {
-            if (Input.GetKey(KeyCode.K) && movement.state == Movement.State.idle && anotherPlayer.GetComponent<Movement>().state != Movement.State.idle) //Only Could Press on Idle
+            if (Input.GetKey(KeyCode.A) && movement.state == Movement.State.idle && anotherPlayer.GetComponent<Movement>().state != Movement.State.idle) //Only Could Press on Idle
             {
                 anotherPlayer.GetComponent<Rigidbody2D>().AddForce(-direction * velocity);
                 this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
@@ -54,7 +54,7 @@ public class Attraction : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.J) && movement.state == Movement.State.idle && anotherPlayer.GetComponent<Movement>().state != Movement.State.idle) //Only Could Press on Idle
+            if (Input.GetKey(KeyCode.L) && movement.state == Movement.State.idle && anotherPlayer.GetComponent<Movement>().state != Movement.State.idle) //Only Could Press on Idle
             {
                 anotherPlayer.GetComponent<Rigidbody2D>().AddForce(-direction * velocity);
                 this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
@@ -67,14 +67,14 @@ public class Attraction : MonoBehaviour
     {
         if (this.gameObject.name == "PlayerA")
         {
-            if (Input.GetKeyUp(KeyCode.K))
+            if (Input.GetKeyUp(KeyCode.A))
             {
                 this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             }
         }
         else
         {
-            if (Input.GetKeyUp(KeyCode.J))
+            if (Input.GetKeyUp(KeyCode.L))
             {
                 this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             }
