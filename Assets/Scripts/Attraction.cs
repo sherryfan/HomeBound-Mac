@@ -5,7 +5,7 @@ using UnityEngine;
 public class Attraction : MonoBehaviour
 {
     [SerializeField]
-    GameObject anotherCircle;
+    GameObject anotherPlayer;
 
     [SerializeField]
     float velocity = 0.1f;
@@ -16,19 +16,20 @@ public class Attraction : MonoBehaviour
     [SerializeField]
     Vector2 currentPostion;
 
-    private Vector2 direction;
+    [SerializeField]
+    Vector2 direction;
 
-
-    void Start()
-    {
-        direction = anotherCircle.transform.position - transform.position;
-        currentPostion = transform.position;
-    }
+    public Movement movement;
 
     void Update()
     {
-        distance = Vector2.Distance(anotherCircle.transform.position, transform.position);
-        direction = anotherCircle.transform.position - transform.position;
+        if (distance <= 3f)
+        {
+            this.gameObject.GetComponent<SpringJoint2D>().enabled = true;
+        }
+        distance = Vector2.Distance(anotherPlayer.transform.position, transform.position);
+        direction = anotherPlayer.transform.position - transform.position;
+        release_attract();
     }
 
     void FixedUpdate()
@@ -36,15 +37,45 @@ public class Attraction : MonoBehaviour
         if(distance > 3f)
         {
             this.gameObject.GetComponent<SpringJoint2D>().enabled = false;
-            if(Input.GetKey(KeyCode.K))
+            attract();
+        }
+    }
+
+    private void attract()
+    {
+        if (this.gameObject.name == "Circle1")
+        {
+            if (Input.GetKey(KeyCode.K) && movement.state == Movement.State.idle) //Only Could Press on Idle
             {
-                anotherCircle.GetComponent<Rigidbody2D>().AddForce(-direction * velocity);
+                anotherPlayer.GetComponent<Rigidbody2D>().AddForce(-direction * velocity);
+                this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             }
         }
         else
         {
-            this.gameObject.GetComponent<SpringJoint2D>().enabled = true;
+            if (Input.GetKey(KeyCode.J) && movement.state == Movement.State.idle) //Only Could Press on Idle
+            {
+                anotherPlayer.GetComponent<Rigidbody2D>().AddForce(-direction * velocity);
+                this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            }
         }
     }
 
+    private void release_attract()
+    {
+        if (this.gameObject.name == "Circle1")
+        {
+            if (Input.GetKeyUp(KeyCode.K))
+            {
+                this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            }
+        }
+        else
+        {
+            if (Input.GetKeyUp(KeyCode.J))
+            {
+                this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+            }
+        }
+    }
 }
