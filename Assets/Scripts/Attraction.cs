@@ -19,11 +19,11 @@ public class Attraction : MonoBehaviour
     [SerializeField]
     Vector2 direction;
 
-    public TestMovement movement;
+    public Movement movement;
 
     void Update()
     {
-        if (distance <= 3f && movement.state == TestMovement.State.idle)
+        if (distance <= 3f && movement.state == Movement.State.idle)
         {
             this.gameObject.GetComponent<SpringJoint2D>().enabled = true;
         }
@@ -45,7 +45,7 @@ public class Attraction : MonoBehaviour
     {
         if (this.gameObject.name == "PlayerA")
         {
-            if (Input.GetKey(KeyCode.K) && movement.state == TestMovement.State.idle && anotherPlayer.GetComponent<TestMovement>().state != TestMovement.State.idle) //Only Could Press on Idle
+            if (Input.GetKey(KeyCode.K) && movement.state == Movement.State.idle && anotherPlayer.GetComponent<Movement>().state != Movement.State.idle) //Only Could Press on Idle
             {
                 anotherPlayer.GetComponent<Rigidbody2D>().AddForce(-direction * velocity);
                 this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
@@ -54,7 +54,7 @@ public class Attraction : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.J) && movement.state == TestMovement.State.idle && anotherPlayer.GetComponent<TestMovement>().state != TestMovement.State.idle) //Only Could Press on Idle
+            if (Input.GetKey(KeyCode.J) && movement.state == Movement.State.idle && anotherPlayer.GetComponent<Movement>().state != Movement.State.idle) //Only Could Press on Idle
             {
                 anotherPlayer.GetComponent<Rigidbody2D>().AddForce(-direction * velocity);
                 this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
