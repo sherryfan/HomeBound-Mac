@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class ReadyGroupController : MonoBehaviour
 {
@@ -9,6 +11,12 @@ public class ReadyGroupController : MonoBehaviour
     private GameObject _p1, _p2;
     [SerializeField]
     private Sprite _p1ReadySprite, _p2ReadySprite;
+    [Space(5)]
+    [SerializeField]
+    private GameObject _p1Key, _p1Press, _p1Joined;
+    [Space(5)]
+    [SerializeField]
+    private GameObject _p2Key, _p2Press, _p2Joined;
 
 
     private bool _p1Ready = false, _p2Ready = false;
@@ -27,28 +35,78 @@ public class ReadyGroupController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_p1Ready && _p2Ready)
-        {
-            // Fire some sequence here/
-            // If there's a CoRoutineSequence or anything, disable this script
-            return;
-        }
 
-        if (_p1Ready)
-        {
-            _p1.GetComponent<SpriteRenderer>().sprite = _p1ReadySprite;
-            _p1Transform.localScale = Vector3.one;
-            //Changes the sprite of P1 Ready, along with the size.
-        }
-        if (_p2Ready)
-        {
-            _p2.GetComponent<SpriteRenderer>().sprite = _p2ReadySprite;
-            _p2Transform.localScale = Vector3.one;
-            //Changes the sprite of P2 Ready, along with the size.
-        }
         _p1Transform.localPosition = _p1Origin + Vector3.up * FloatHeight * Mathf.SmoothStep(-1, 1, Mathf.PingPong(Time.time / P1HalfCycle, 1));
         _p2Transform.localPosition = _p2Origin + Vector3.up * FloatHeight * Mathf.SmoothStep(-1, 1, Mathf.PingPong(Time.time / P2HalfCycle, 1));
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(P1FlashJoined());
+        }
 
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            StartCoroutine(P2FlashJoined());
+        }
     }
+
+
+    private IEnumerator P1FlashJoined()
+    {
+        if (_p1Ready) yield return null;
+        _p1Ready = true;
+        _p1Key.SetActive(false);
+        _p1Press.SetActive(false);
+        _p1Joined.SetActive(true);
+
+        if(_p2Ready)
+        {
+            StartCoroutine(Proceed());
+        }
+
+        var flash = true;
+        while (true)
+        {
+            _p1Joined.GetComponent<Text>().color = flash ? Color.cyan : Color.white;
+
+            flash = !flash;
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+    private IEnumerator P2FlashJoined()
+    {
+        if (_p2Ready) yield return null;
+        _p2Ready = true;
+        _p2Key.SetActive(false);
+        _p2Press.SetActive(false);
+        _p2Joined.SetActive(true);
+
+        if (_p1Ready)
+        {
+            StartCoroutine(Proceed());
+        }
+
+        var flash = true;
+        while (true)
+        {
+            _p2Joined.GetComponent<Text>().color = flash ? new Color(1,0.8f,0.8f): Color.white;
+
+            flash = !flash;
+
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    private IEnumerator Proceed()
+    {
+        // proceeds to next scene
+
+        print("Hi");
+
+        yield return null;
+    }
+
+
+
+
 }
