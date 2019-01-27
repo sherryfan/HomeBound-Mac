@@ -55,12 +55,13 @@ public class Movement : MonoBehaviour
                     isRotating = false;
                     FlyOneTime();
                 }
-                else if(state == State.crouch)
+                else if (state == State.crouch)
                 {
                     StartCoroutine(Launch());
                 }
-
+                print("current velocity: " + rb.velocity.magnitude);
             }
+
         }
         else
         {
@@ -119,7 +120,7 @@ public class Movement : MonoBehaviour
             spaceman.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         }
-        //print("previous velocity: " + GetComponent<Rigidbody2D>().velocity.magnitude);
+
     }
 
     IEnumerator Fart()
@@ -171,7 +172,8 @@ public class Movement : MonoBehaviour
         m_Anim.SetBool("Jump", false);
         m_Anim.SetBool("Land", true);
 
-        direction.SetActive(false);
+        direction.SetActive(true);
+        direction.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
 
         float angle = Vector2.Angle(other.contacts[0].normal, new Vector2(0f, 1f));
         if (other.contacts[0].normal.x > 0f)
