@@ -157,6 +157,8 @@ public class Movement : MonoBehaviour
             m_Anim.SetBool("Jump", false);
             m_Anim.SetBool("Land", true);
 
+            direction.SetActive(false);
+
             float angle = Vector2.Angle(other.contacts[0].normal, new Vector2(0f, 1f));
             if(other.contacts[0].normal.x > 0f)
             {
