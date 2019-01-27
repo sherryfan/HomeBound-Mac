@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    // Start is called before the first frame update
     public bool isPlayerA = false;
     public Animator m_Anim;
 
     public float speed = 1f;
-    public bool stop = false;
     public GameObject spaceman, // the sprite of player
+    fart,
     direction, // the sprite for direction indication
     directionEnd, //for calculation of the movement direction
     EndGameUI;
 
-    public enum State { idle = 0, crouch, flying };
+    public enum State { idle = 0, crouch, flying, landing };
     public State state;
     public bool isRotating = false;
+    public float min_velocity = 1f;
 
     private Rigidbody2D rb;
     void Start()
@@ -29,48 +29,83 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (rb.velocity.magnitude < min_velocity)
+        {
+            Vector2 temp_velocity = rb.velocity;
+            if (rb.velocity.magnitude >= 0.001f || rb.velocity.magnitude <= -0.001)
+            {
+                temp_velocity = min_velocity / rb.velocity.magnitude * temp_velocity;
+                rb.velocity = temp_velocity;
+            }
+        }
+
         if (isPlayerA)
         {
             if (Input.GetKey("space"))
             {
                 //print("space down");
-                isRotating = true;
-                if (state != State.crouch)
+                if (state == State.flying)
+                {
+                    isRotating = true;
+                }
+                else if (state == State.idle)
                 {
                     state = State.crouch;
                     //trigger animation
+                    print("crouch");
+                    m_Anim.SetBool("Land", false);
                     m_Anim.SetBool("Crouch", true);
                 }
             }
 
             if (Input.GetKeyUp("space"))
             {
-                print("space up");
-                isRotating = false;
-
-                Fly();
-
+                //print("space up");
+                if (state == State.flying)
+                {
+                    isRotating = false;
+                    FlyOneTime();
+                }
+                else if (state == State.crouch)
+                {
+                    StartCoroutine(Launch());
+                }
+                print("current velocity: " + rb.velocity.magnitude);
             }
+
         }
         else
         {
             if (Input.GetKey(KeyCode.Return))
             {
                 //print("space down");
-                isRotating = true;
-                if (state != State.crouch)
+                if (state == State.flying)
+                {
+                    isRotating = true;
+                }
+                else if (state == State.idle)
                 {
                     state = State.crouch;
                     //trigger animation
+                    print("crouch");
+                    m_Anim.SetBool("Land", false);
                     m_Anim.SetBool("Crouch", true);
                 }
             }
 
             if (Input.GetKeyUp(KeyCode.Return))
             {
-                print("return up");
-                isRotating = false;
-                Fly();
+               //print("space up");
+                if (state == State.flying)
+                {
+                    isRotating = false;
+                    FlyOneTime();
+                }
+                else if (state == State.crouch)
+                {
+                    StartCoroutine(Launch());
+                }
+                print("current velocity: " + rb.velocity.magnitude);
             }
         }
 
@@ -85,17 +120,13 @@ public class Movement : MonoBehaviour
 
     }
 
-    void Fly()
+    void FlyOneTime()
     {
+        StartCoroutine(Fart());
+        state = State.landing;
+
         Vector2 flyDirection = spaceman.transform.position - directionEnd.transform.position;
         rb.AddForce(flyDirection * speed);
-        if (state != State.flying)
-        {
-            state = State.flying;
-            //trigger animation
-            m_Anim.SetBool("Crouch", false);
-            m_Anim.SetBool("Jump", true);
-        }
         if (flyDirection != Vector2.zero)
         {
             float angle = Mathf.Atan2(flyDirection.y, flyDirection.x) * Mathf.Rad2Deg;
@@ -103,49 +134,85 @@ public class Movement : MonoBehaviour
 
         }
 
-        print("previous velocity: " + GetComponent<Rigidbody2D>().velocity.magnitude);
     }
+
+    IEnumerator Fart()
+    {
+        fart.SetActive(true);
+        fart.GetComponent<Animator>().SetTrigger("Fart");
+        direction.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+        yield return new WaitForSeconds(1.2f);
+        fart.SetActive(false);
+        yield return null;
+    }
+
+    IEnumerator Launch()
+    {
+        state = State.flying;
+        togglePositionFreeze(false);
+
+        rb.AddForce(spaceman.transform.up * speed);
+        direction.SetActive(true);
+        direction.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+
+        //trigger animation
+        m_Anim.SetBool("Crouch", false);
+        m_Anim.SetBool("Jump", true);
+
+        yield return new WaitForSeconds(1f);
+        yield return null;
+    }
+
+    private void togglePositionFreeze(bool freeze)
+    {
+        if (freeze)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
+
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Station")
         {
-            rb.velocity = Vector2.zero;
-            state = State.idle;
-            
-            // adjust to perpendicular position
-            if (other.contacts[0].normal.y >= 0.9f)
-            {
-                Vector3 angle = new Vector3 (0f, 0f, 0f);
-                spaceman.transform.rotation = Quaternion.Euler(angle);
-            }
-            else if(other.contacts[0].normal.y <= -0.9f)
-            {
-                Vector3 angle = new Vector3(0f, 0f, 180f);
-                spaceman.transform.rotation = Quaternion.Euler(angle);
-            }
-            else if(other.contacts[0].normal.x >= 0.9f)
-            {
-                Vector3 angle = new Vector3(0f, 0f, 270f);
-                spaceman.transform.rotation = Quaternion.Euler(angle);
-            }
-            else if(other.contacts[0].normal.x <= -0.9f)
-            {
-                Vector3 angle = new Vector3(0f, 0f, 90f);
-                spaceman.transform.rotation = Quaternion.Euler(angle);
-            }
-
-            
-
+            state = State.landing;
+            StartCoroutine(Land(other));
         }
 
         if (other.gameObject.tag == "Death")
         {
             rb.velocity = Vector2.zero;
             state = State.idle;
+            m_Anim.SetTrigger("Death");
             //Game Over
             EndGameUI.SetActive(true);
         }
+    }
 
+    IEnumerator Land(Collision2D other)
+    {
+        rb.velocity = Vector2.zero;
+
+        m_Anim.SetBool("Jump", false);
+        m_Anim.SetBool("Land", true);
+
+        direction.SetActive(true);
+        direction.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+
+        float angle = Vector2.Angle(other.contacts[0].normal, new Vector2(0f, 1f));
+        if (other.contacts[0].normal.x > 0f)
+        {
+            angle = -angle;
+        }
+        spaceman.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+        yield return new WaitForSeconds(0.5f);
+        state = State.idle;
+        togglePositionFreeze(true);
+        yield return null;
     }
 }
