@@ -435,7 +435,7 @@ Transform:
   m_LocalScale: {x: 0.3140768, y: 0.3140768, z: 0.3140768}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &50618485
 CircleCollider2D:
@@ -1621,15 +1621,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerA: 0
   m_Anim: {fileID: 2110435509}
-  speed: 50
+  speed: 100
   spaceman: {fileID: 2110435507}
   fart: {fileID: 1618639782}
   direction: {fileID: 1468628095}
   directionEnd: {fileID: 2138662035}
   EndGameUI: {fileID: 2000210599}
+  SoundEffect: {fileID: 0}
+  SoundOnLandingNormal: {fileID: 0}
+  SoundOnDeath: {fileID: 0}
+  SoundWhenThrust: {fileID: 0}
   state: 0
   isRotating: 0
-  min_velocity: 1
+  min_velocity: 2
 --- !u!4 &182149380
 Transform:
   m_ObjectHideFlags: 0
@@ -1645,7 +1649,7 @@ Transform:
   - {fileID: 2110435511}
   - {fileID: 1047436462}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &183685055
 GameObject:
@@ -3569,7 +3573,7 @@ RectTransform:
   m_Children:
   - {fileID: 1190645249}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4782,7 +4786,7 @@ Transform:
   - {fileID: 1184289809}
   - {fileID: 108768684}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &953080605
 GameObject:
@@ -7117,15 +7121,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerA: 1
   m_Anim: {fileID: 183685056}
-  speed: 50
+  speed: 100
   spaceman: {fileID: 183685055}
   fart: {fileID: 987554202565273927}
   direction: {fileID: 1038593032}
   directionEnd: {fileID: 758460127}
   EndGameUI: {fileID: 2000210599}
+  SoundEffect: {fileID: 0}
+  SoundOnLandingNormal: {fileID: 0}
+  SoundOnDeath: {fileID: 0}
+  SoundWhenThrust: {fileID: 0}
   state: 0
   isRotating: 0
-  min_velocity: 1
+  min_velocity: 2
 --- !u!4 &1437342490
 Transform:
   m_ObjectHideFlags: 0
@@ -7141,7 +7149,7 @@ Transform:
   - {fileID: 183685058}
   - {fileID: 1657592226}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!231 &1437342492
 SpringJoint2D:
@@ -8146,7 +8154,7 @@ Transform:
   - {fileID: 5738475}
   - {fileID: 1101088243}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1710972556
 GameObject:
@@ -9572,7 +9580,7 @@ GameObject:
   - component: {fileID: 2000210601}
   - component: {fileID: 2000210600}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Gameover UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9651,7 +9659,7 @@ RectTransform:
   m_Children:
   - {fileID: 780161031}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

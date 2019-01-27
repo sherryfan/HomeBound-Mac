@@ -231,8 +231,8 @@ public class Movement : MonoBehaviour
     IEnumerator GameOver()
     {
         yield return new WaitForSeconds(2f);
-        GameStats.day = GameObject.Find("EndPlanet").GetComponent<GameController>().day;
-        GameStats.remainTime = GameObject.Find("EndPlanet").GetComponent<GameController>().howLongIsADay;
+        //GameStats.day = GameObject.Find("EndPlanet").GetComponent<GameController>().day;
+        //GameStats.remainTime = GameObject.Find("EndPlanet").GetComponent<GameController>().howLongIsADay;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

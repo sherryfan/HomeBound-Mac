@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 {
     // Start is called before the first frame update
     public float howLongIsADay = 5f;
-    public int day;
+    public int day = 0;
     public TextMeshPro tmp;
 
     public bool isPlayerAHit = false;
@@ -25,30 +25,37 @@ public class GameController : MonoBehaviour
     void Update()
     {
         howLongIsADay -= Time.deltaTime;
-        if(howLongIsADay < 0){
+        if (howLongIsADay < 0)
+        {
             day++;
             howLongIsADay = 5;
         }
 
         tmp.text = "Day " + day;
 
-        if(isPlayerAHit && isPlayerBHit)
+        if (isPlayerAHit && isPlayerBHit)
         {
             GameStats.day = day;
             GameStats.remainTime = howLongIsADay;
-            SceneManager.LoadScene(4);
+            StartCoroutine(EndScene());
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other) 
+    IEnumerator EndScene()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(4);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
     {
         print("Planet hits" + other.gameObject.name);
-        if(other.gameObject.name == "PlayerA")
+        if (other.gameObject.name == "PlayerA")
         {
             isPlayerAHit = true;
             other.gameObject.GetComponent<Movement>().enabled = false;
         }
-        else if(other.gameObject.name == "PlayerB")
+        else if (other.gameObject.name == "PlayerB")
         {
             isPlayerBHit = true;
             other.gameObject.GetComponent<Movement>().enabled = false;

@@ -1592,15 +1592,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerA: 0
   m_Anim: {fileID: 2110435509}
-  speed: 50
+  speed: 100
   spaceman: {fileID: 2110435507}
   fart: {fileID: 1618639782}
   direction: {fileID: 1468628095}
   directionEnd: {fileID: 2138662035}
   EndGameUI: {fileID: 2000210599}
+  SoundEffect: {fileID: 0}
+  SoundOnLandingNormal: {fileID: 0}
+  SoundOnDeath: {fileID: 0}
+  SoundWhenThrust: {fileID: 0}
   state: 0
   isRotating: 0
-  min_velocity: 1
+  min_velocity: 2
 --- !u!4 &182149380
 Transform:
   m_ObjectHideFlags: 0
@@ -6308,15 +6312,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerA: 1
   m_Anim: {fileID: 183685056}
-  speed: 50
+  speed: 100
   spaceman: {fileID: 183685055}
   fart: {fileID: 987554202565273927}
   direction: {fileID: 1038593032}
   directionEnd: {fileID: 758460127}
   EndGameUI: {fileID: 2000210599}
+  SoundEffect: {fileID: 0}
+  SoundOnLandingNormal: {fileID: 0}
+  SoundOnDeath: {fileID: 0}
+  SoundWhenThrust: {fileID: 0}
   state: 0
   isRotating: 0
-  min_velocity: 1
+  min_velocity: 2
 --- !u!4 &1437342490
 Transform:
   m_ObjectHideFlags: 0
