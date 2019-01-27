@@ -50,12 +50,12 @@ public class Attraction : MonoBehaviour
     {
         distance = Vector2.Distance(spacemanA.transform.position, spacemanB.transform.position);
         direction = spacemanB.transform.position - spacemanA.transform.position;
+        Release_attract();
     }
 
     void FixedUpdate()
     {
         Attract();
-        Release_attract();
     }
 
     private void Attract()
