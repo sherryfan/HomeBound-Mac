@@ -44,7 +44,7 @@ public class ReadyGroupController : MonoBehaviour
             StartCoroutine(P1FlashJoined());
         }
 
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             StartCoroutine(P2FlashJoined());
         }
@@ -101,7 +101,7 @@ public class ReadyGroupController : MonoBehaviour
     {
         // proceeds to next scene
 
-        print("Hi");
+        yield return new WaitForSeconds(3f);
 
         yield return null;
     }
