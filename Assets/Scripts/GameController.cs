@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
     IEnumerator EndScene()
     {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(5);
     }
 
     private void OnCollisionEnter2D(Collision2D other)

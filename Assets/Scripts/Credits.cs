@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Tutorial : MonoBehaviour
+public class Credits : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -14,15 +14,19 @@ public class Tutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKey(KeyCode.M))
         {
-            StartCoroutine(StartGame());
+            Restart();
         }
     }
 
-    IEnumerator StartGame()
+    void Restart()
     {
-        yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene(1);
+        GameStats.level = 0;
+        GameStats.day = 0;
+        GameStats.remainTime = 0;
+        SceneManager.LoadScene(0);
+
+
     }
 }

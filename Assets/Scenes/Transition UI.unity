@@ -845,6 +845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 201177082}
   - component: {fileID: 201177081}
+  - component: {fileID: 201177083}
   m_Layer: 0
   m_Name: UIController
   m_TagString: Untagged
@@ -864,21 +865,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f580464ebd41755468ef8c3ff8a8968d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmp:
-  - {fileID: 434889414}
-  - {fileID: 1811552435}
-  - {fileID: 1472663973}
-  - {fileID: 735343506}
+  tmpDay: {fileID: 434889414}
+  tmp: {fileID: 1811552435}
   planets:
   - {fileID: 1049756856}
   - {fileID: 1241783478}
   - {fileID: 1712789984}
   - {fileID: 944836513}
   text:
-  - ' REACH PLANET - OCCION IV.'
-  - ' REACH PLANET - Zeimia 3H28.'
-  - ' REACH THE MOON. WE ARE CLOSE NOW...'
-  - ' REACH THE EARTH. WE ARE HOME...'
+  - ' "THE MARTIAN" IS THE FIRST THING THAT POPPED UP IN MY HEAD AS SOON AS I REALIZE
+    I WAS IN SPACE...BUT WAIT, HE''S STRANDED ON MARS, WE''RE IN SPACE. ALONE.                                   IN
+    SPACE NO ONE CAN HEAR YOU SCREAM, SO WE''D BETTER GET TO IT.                                                                        TO
+    OCCION IV WE GO.'
+  - I CAN'T HELP BUT APPRECIATE HOW SPACE TECH HAS EVOLVED THROUGH THE YEARS. I COULDN'T
+    IMAGINE HOW WE'D SURVIVE IF THIS HAPPENED YEARS AGO.                                        IF
+    YOU'RE WONDERING WHY I'M SO CHILLED, GOD, IT'S BECAUSE THERE'S NO TIME TO PANIC.
+    AND IT IS CHILLY HERE.                                   WE'RE STOPPING AT ZEIMIA-3H28.....HOLD
+    ON, IS THAT A BLACK HOLE?
+  - WE NEARLY DIED OUT THERE.... THE BLACK HOLE COULD'VE TORN US INTO PIECES.                                      UGH...
+    THAT WAS TOO CLOSE. BREATHE. BREATHE.                                               BUT
+    WE MADE IT. WE'RE HERE AT THE MOON. WE'RE CLOSE TO HOME.
+  - HOW FAR HAVE WE TRAVELED? I DON'T KNOW. NEVER SPENT THIS MUCH TIME TALKING TO
+    MYSELF. EVEN IN A SITUATION LIKE THIS, I COULDN'T POSSIBLY LET MY MATE HEAR ME
+    BABBLING NONSENSE.                                          I KINDA APPRECIATED
+    IT. KEEPS ME SANE.                                                 TO EARTH, FRIENDS.
+    I'M COMING HOME.
+  planetNames:
+  - OCCION IV
+  - ZEIMIA-3H28
+  - THE MOON
+  - THE EARTH
 --- !u!4 &201177082
 Transform:
   m_ObjectHideFlags: 0
@@ -893,6 +909,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &201177083
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201177080}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e9fb0d5222fc12f4296d6173b350877c, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &388559101
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,7 +1085,7 @@ GameObject:
   - component: {fileID: 434889415}
   - component: {fileID: 434889414}
   m_Layer: 0
-  m_Name: Planet1 Text
+  m_Name: Day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1018,9 +1130,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'DAY 10 REACH PLANET - OCCION IV.
-
-'
+  m_text: "DAY 10 \n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 523eb9367cc924641b8825f0115df758, type: 2}
   m_sharedMaterial: {fileID: 21922007517441436, guid: 523eb9367cc924641b8825f0115df758,
@@ -1090,10 +1200,10 @@ MonoBehaviour:
   m_margin: {x: -32.99544, y: 0, z: -32.726097, w: 0}
   m_textInfo:
     textComponent: {fileID: 434889414}
-    characterCount: 33
+    characterCount: 8
     spriteCount: 0
-    spaceCount: 7
-    wordCount: 7
+    spaceCount: 3
+    wordCount: 2
     linkCount: 0
     lineCount: 1
     pageCount: 1
@@ -1425,7 +1535,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &735343505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1817,31 +1927,13 @@ GameObject:
   - component: {fileID: 944836517}
   - component: {fileID: 944836516}
   - component: {fileID: 944836515}
-  - component: {fileID: 944836514}
   m_Layer: 0
   m_Name: EndPlanet 4
   m_TagString: Station
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &944836514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 944836513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7408edec9db17e04e99a472aca795033, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  howLongIsADay: 5
-  day: 0
-  tmp: {fileID: 0}
-  isPlayerAHit: 0
-  isPlayerBHit: 0
+  m_IsActive: 0
 --- !u!58 &944836515
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2361,31 +2453,13 @@ GameObject:
   - component: {fileID: 1241783482}
   - component: {fileID: 1241783481}
   - component: {fileID: 1241783480}
-  - component: {fileID: 1241783479}
   m_Layer: 0
   m_Name: EndPlanet 2
   m_TagString: Station
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1241783479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1241783478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7408edec9db17e04e99a472aca795033, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  howLongIsADay: 5
-  day: 0
-  tmp: {fileID: 0}
-  isPlayerAHit: 0
-  isPlayerBHit: 0
+  m_IsActive: 0
 --- !u!58 &1241783480
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2738,7 +2812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1472663972
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3098,31 +3172,13 @@ GameObject:
   - component: {fileID: 1712789988}
   - component: {fileID: 1712789987}
   - component: {fileID: 1712789986}
-  - component: {fileID: 1712789985}
   m_Layer: 0
   m_Name: EndPlanet 3
   m_TagString: Station
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1712789985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712789984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7408edec9db17e04e99a472aca795033, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  howLongIsADay: 5
-  day: 0
-  tmp: {fileID: 0}
-  isPlayerAHit: 0
-  isPlayerBHit: 0
+  m_IsActive: 0
 --- !u!58 &1712789986
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3372,7 +3428,14 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: DAY 27 REACH PLANET - Zeimia 3H28.
+  m_text: '"THE MARTIAN" IS THE FIRST THING THAT POPPED UP IN MY HEAD AS SOON AS I
+    REALIZE I WAS IN SPACE...BUT WAIT, HE''S STRANDED ON MARS, WE''RE IN SPACE. ALONE.
+
+
+    IN SPACE NO ONE CAN HEAR YOU SCREAM, SO WE''D BETTER GET TO IT.
+
+
+    TO OCCION IV WE GO.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 523eb9367cc924641b8825f0115df758, type: 2}
   m_sharedMaterial: {fileID: 21922007517441436, guid: 523eb9367cc924641b8825f0115df758,
@@ -3419,7 +3482,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 112
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -3442,12 +3505,12 @@ MonoBehaviour:
   m_margin: {x: -32.99544, y: 0, z: -32.726097, w: 0}
   m_textInfo:
     textComponent: {fileID: 1811552435}
-    characterCount: 34
+    characterCount: 237
     spriteCount: 0
-    spaceCount: 6
-    wordCount: 7
+    spaceCount: 50
+    wordCount: 50
     linkCount: 0
-    lineCount: 1
+    lineCount: 8
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
