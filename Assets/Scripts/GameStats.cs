@@ -8,4 +8,6 @@ public static class GameStats
     public static string playerA, playerB;
     public static int level = 0, day = 0; 
 
+    public static float remainTime = 0;
+
 }

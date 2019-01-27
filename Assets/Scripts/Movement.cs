@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -201,6 +202,7 @@ public class Movement : MonoBehaviour
             SoundEffect.PlayOneShot(SoundOnDeath);
             //Game Over
             EndGameUI.SetActive(true);
+            StartCoroutine("GameOver");
         }
     }
 
@@ -224,5 +226,13 @@ public class Movement : MonoBehaviour
         state = State.idle;
         togglePositionFreeze(true);
         yield return null;
+    }
+
+    IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(2f);
+        GameStats.day = GameObject.Find("EndPlanet").GetComponent<GameController>().day;
+        GameStats.remainTime = GameObject.Find("EndPlanet").GetComponent<GameController>().howLongIsADay;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
