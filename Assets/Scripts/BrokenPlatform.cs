@@ -28,6 +28,7 @@ public class BrokenPlatform : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D other)
     {
+        GetComponent<BoxCollider2D>().enabled = false;
         StartCoroutine(JudgeExit(other.gameObject));
     }
 
@@ -48,7 +49,7 @@ public class BrokenPlatform : MonoBehaviour
             print("ExitPlatform");
             StopAllCoroutines();
         }
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.0001f);
         StartCoroutine(JudgeExit(other));
     }
 

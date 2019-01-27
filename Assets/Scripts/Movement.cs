@@ -99,7 +99,7 @@ public class Movement : MonoBehaviour
 
             if (Input.GetKeyUp(KeyCode.Return))
             {
-               //print("space up");
+                //print("space up");
                 if (state == State.flying)
                 {
                     isRotating = false;
@@ -223,10 +223,10 @@ public class Movement : MonoBehaviour
             angle = -angle;
         }
         spaceman.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-        togglePositionFreeze(true);
-        yield return new WaitForSeconds(0.5f);
+
+        yield return new WaitForSeconds(0.1f);
         state = State.idle;
-        //togglePositionFreeze(true);
+        togglePositionFreeze(true);
         yield return null;
     }
 
@@ -236,5 +236,19 @@ public class Movement : MonoBehaviour
         //GameStats.day = GameObject.Find("EndPlanet").GetComponent<GameController>().day;
         //GameStats.remainTime = GameObject.Find("EndPlanet").GetComponent<GameController>().howLongIsADay;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void RevealFlag()
+    {
+        foreach (Transform child2 in transform)
+        {
+            foreach (Transform child in child2)
+            {
+                if (child.gameObject.name.Equals("flag"))
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
+        }
     }
 }
