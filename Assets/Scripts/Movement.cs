@@ -167,8 +167,7 @@ public class Movement : MonoBehaviour
     {
         if (freeze)
         {
-            rb.constraints = RigidbodyConstraints2D.FreezePosition;
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
         else
         {
