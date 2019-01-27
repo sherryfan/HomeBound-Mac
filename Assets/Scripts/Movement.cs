@@ -210,6 +210,7 @@ public class Movement : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
 
+
         m_Anim.SetBool("Jump", false);
         m_Anim.SetBool("Land", true);
 
@@ -222,9 +223,10 @@ public class Movement : MonoBehaviour
             angle = -angle;
         }
         spaceman.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+        togglePositionFreeze(true);
         yield return new WaitForSeconds(0.5f);
         state = State.idle;
-        togglePositionFreeze(true);
+        //togglePositionFreeze(true);
         yield return null;
     }
 
