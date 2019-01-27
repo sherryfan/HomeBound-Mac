@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
     directionEnd, //for calculation of the movement direction
     EndGameUI;
 
-    public enum State { idle = 0, crouch, flying };
+    public enum State { idle = 0, crouch, flying, landing };
     public State state;
     public bool isRotating = false;
 
@@ -37,7 +37,7 @@ public class Movement : MonoBehaviour
                 {
                     isRotating = true;
                 }
-                else if (state != State.crouch)
+                else if (state == State.idle)
                 {
                     state = State.crouch;
                     //trigger animation
@@ -70,7 +70,7 @@ public class Movement : MonoBehaviour
                 {
                     isRotating = true;
                 }
-                else if (state != State.crouch)
+                else if (state == State.idle)
                 {
                     state = State.crouch;
                     //trigger animation
@@ -127,7 +127,8 @@ public class Movement : MonoBehaviour
         print("previous velocity: " + GetComponent<Rigidbody2D>().velocity.magnitude);
     }
 
-    IEnumerator Fart(){
+    IEnumerator Fart()
+    {
         fart.SetActive(true);
         fart.GetComponent<Animator>().SetTrigger("Fart");
         direction.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
@@ -155,19 +156,8 @@ public class Movement : MonoBehaviour
     {
         if (other.gameObject.tag == "Station")
         {
-            rb.velocity = Vector2.zero;
-            state = State.idle;
-            m_Anim.SetBool("Jump", false);
-            m_Anim.SetBool("Land", true);
-
-            direction.SetActive(false);
-
-            float angle = Vector2.Angle(other.contacts[0].normal, new Vector2(0f, 1f));
-            if(other.contacts[0].normal.x > 0f)
-            {
-                angle = -angle;
-            }
-            spaceman.transform.rotation = Quaternion.Euler(new Vector3 (0f,0f,angle));
+            state = State.landing;
+            StartCoroutine(Land(other));
         }
 
         if (other.gameObject.tag == "Death")
@@ -177,6 +167,25 @@ public class Movement : MonoBehaviour
             //Game Over
             EndGameUI.SetActive(true);
         }
+    }
 
+    IEnumerator Land(Collision2D other)
+    {
+        rb.velocity = Vector2.zero;
+        
+        m_Anim.SetBool("Jump", false);
+        m_Anim.SetBool("Land", true);
+
+        direction.SetActive(false);
+
+        float angle = Vector2.Angle(other.contacts[0].normal, new Vector2(0f, 1f));
+        if (other.contacts[0].normal.x > 0f)
+        {
+            angle = -angle;
+        }
+        spaceman.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+        yield return new WaitForSeconds(0.5f);
+        state = State.idle;
+        yield return null;
     }
 }
