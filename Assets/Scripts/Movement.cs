@@ -78,6 +78,7 @@ public class Movement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Return))
             {
+                //print("space down");
                 if (state == State.flying)
                 {
                     isRotating = true;
@@ -94,16 +95,17 @@ public class Movement : MonoBehaviour
 
             if (Input.GetKeyUp(KeyCode.Return))
             {
-                //print("return up");
+               //print("space up");
                 if (state == State.flying)
                 {
                     isRotating = false;
                     FlyOneTime();
                 }
-                else
+                else if (state == State.crouch)
                 {
                     StartCoroutine(Launch());
                 }
+                print("current velocity: " + rb.velocity.magnitude);
             }
         }
 
@@ -167,7 +169,6 @@ public class Movement : MonoBehaviour
         {
             rb.constraints = RigidbodyConstraints2D.FreezePosition;
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
         }
         else
         {

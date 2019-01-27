@@ -22,7 +22,7 @@ public class BrokenPlatform : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D other)
     {
-       Destroy(this.transform.parent.gameObject);
+       gameObject.SetActive(false);
     }
 
 }
