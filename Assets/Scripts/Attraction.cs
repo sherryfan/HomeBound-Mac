@@ -19,46 +19,59 @@ public class Attraction : MonoBehaviour
     [SerializeField]
     Vector2 direction;
 
+    [SerializeField]
+    GameObject range;
+
+    [SerializeField]
+    GameObject spacemanA;
+
+    [SerializeField]
+    GameObject spacemanB;
+
     public Movement movement;
+
+    private Movement anothermovement;
+
+    private LineRenderer linerender;
+
+    private Rigidbody2D thisrigidbody;
+
+    private Rigidbody2D anotherrigidbody;
+
+    void Start()
+    {
+        anothermovement = anotherPlayer.GetComponent<Movement>();
+        linerender = this.gameObject.GetComponent<LineRenderer>();
+        thisrigidbody = this.gameObject.GetComponent<Rigidbody2D>();
+        anotherrigidbody = anotherPlayer.GetComponent<Rigidbody2D>();
+    }
 
     void Update()
     {
-        if (distance <= 3f && movement.state == Movement.State.idle)
-        {
-            this.gameObject.GetComponent<SpringJoint2D>().enabled = true;
-        }
         distance = Vector2.Distance(anotherPlayer.transform.position, transform.position);
         direction = anotherPlayer.transform.position - transform.position;
-        Release_attract();
     }
 
     void FixedUpdate()
     {
-        if(distance > 3f)
-        {
-            this.gameObject.GetComponent<SpringJoint2D>().enabled = false;
-            Attract();
-        }
+        Attract();
+        Release_attract();
     }
 
     private void Attract()
     {
         if (this.gameObject.name == "PlayerA")
         {
-            if (Input.GetKey(KeyCode.A) && movement.state == Movement.State.idle && anotherPlayer.GetComponent<Movement>().state != Movement.State.idle) //Only Could Press on Idle
+            if(Input.GetKey(KeyCode.A))
             {
-                anotherPlayer.GetComponent<Rigidbody2D>().AddForce(-direction * velocity);
-                this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-                print("PlayerA attracts");
+                Onattract(this.gameObject.name);
             }
         }
         else
         {
-            if (Input.GetKey(KeyCode.L) && movement.state == Movement.State.idle && anotherPlayer.GetComponent<Movement>().state != Movement.State.idle) //Only Could Press on Idle
+            if (Input.GetKey(KeyCode.L))
             {
-                anotherPlayer.GetComponent<Rigidbody2D>().AddForce(-direction * velocity);
-                this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-                print("PlayerB attracts");
+                Onattract(this.gameObject.name);
             }
         }
     }
@@ -69,15 +82,36 @@ public class Attraction : MonoBehaviour
         {
             if (Input.GetKeyUp(KeyCode.A))
             {
-                this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                Onreleaseattract();
             }
         }
         else
         {
             if (Input.GetKeyUp(KeyCode.L))
             {
-                this.gameObject.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                Onreleaseattract();
             }
         }
+    }
+
+    private void Onattract(string Objectname)
+    {
+        range.SetActive(true);
+        if (movement.state == Movement.State.idle && anothermovement.state != Movement.State.idle && distance <= 6.5f)
+        {
+            linerender.enabled = true;
+            linerender.SetPosition(0, spacemanA.transform.position + new Vector3(0f, 0f, -1f));
+            linerender.SetPosition(1, spacemanB.transform.position + new Vector3(0f, 0f, -1f));
+            anotherrigidbody.AddForce(-direction * velocity);
+            thisrigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+            print(Objectname +  "attracts");
+        }
+    }
+
+    private void Onreleaseattract()
+    {
+        range.SetActive(false);
+        linerender.enabled = false;
+        thisrigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    // Start is called before the first frame update
     public bool isPlayerA = false;
     public Animator m_Anim;
 
@@ -159,30 +158,12 @@ public class Movement : MonoBehaviour
             m_Anim.SetBool("Jump", false);
             m_Anim.SetBool("Land", true);
 
-            // adjust to perpendicular position
-            if (other.contacts[0].normal.y >= 0.9f)
+            float angle = Vector2.Angle(other.contacts[0].normal, new Vector2(0f, 1f));
+            if(other.contacts[0].normal.x > 0f)
             {
-                Vector3 angle = new Vector3(0f, 0f, 0f);
-                spaceman.transform.rotation = Quaternion.Euler(angle);
+                angle = -angle;
             }
-            else if (other.contacts[0].normal.y <= -0.9f)
-            {
-                Vector3 angle = new Vector3(0f, 0f, 180f);
-                spaceman.transform.rotation = Quaternion.Euler(angle);
-            }
-            else if (other.contacts[0].normal.x >= 0.9f)
-            {
-                Vector3 angle = new Vector3(0f, 0f, 270f);
-                spaceman.transform.rotation = Quaternion.Euler(angle);
-            }
-            else if (other.contacts[0].normal.x <= -0.9f)
-            {
-                Vector3 angle = new Vector3(0f, 0f, 90f);
-                spaceman.transform.rotation = Quaternion.Euler(angle);
-            }
-
-
-
+            spaceman.transform.rotation = Quaternion.Euler(new Vector3 (0f,0f,angle));
         }
 
         if (other.gameObject.tag == "Death")
