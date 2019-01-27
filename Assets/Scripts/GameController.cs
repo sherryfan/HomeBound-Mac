@@ -31,7 +31,7 @@ public class GameController : MonoBehaviour
             howLongIsADay = 5;
         }
 
-        tmp.text = "Day " + day;
+        tmp.text = "DAY " + day;
 
         if (isPlayerAHit && isPlayerBHit)
         {
@@ -53,11 +53,13 @@ public class GameController : MonoBehaviour
         if (other.gameObject.name == "PlayerA")
         {
             isPlayerAHit = true;
+            other.gameObject.GetComponent<Movement>().RevealFlag();
             other.gameObject.GetComponent<Movement>().enabled = false;
         }
         else if (other.gameObject.name == "PlayerB")
         {
             isPlayerBHit = true;
+            other.gameObject.GetComponent<Movement>().RevealFlag();
             other.gameObject.GetComponent<Movement>().enabled = false;
         }
     }
