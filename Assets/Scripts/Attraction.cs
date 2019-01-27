@@ -110,7 +110,7 @@ public class Attraction : MonoBehaviour
             {
                 anotherrigidbody.AddForce(direction * velocity);
             }
-            thisrigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
+            //thisrigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
             print(Objectname +  "attracts");
         }
     }
@@ -119,6 +119,6 @@ public class Attraction : MonoBehaviour
     {
         range.SetActive(false);
         linerender.enabled = false;
-        thisrigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
+        //thisrigidbody.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }

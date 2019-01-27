@@ -29,7 +29,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(rb.velocity.magnitude < min_velocity)
+        if (rb.velocity.magnitude < min_velocity)
         {
             Vector2 temp_velocity = rb.velocity;
             if (rb.velocity.magnitude >= 0.001f || rb.velocity.magnitude <= -0.001)
@@ -146,11 +146,13 @@ public class Movement : MonoBehaviour
 
     IEnumerator Launch()
     {
+        state = State.flying;
+        togglePositionFreeze(false);
+
         rb.AddForce(spaceman.transform.up * speed);
         direction.SetActive(true);
         direction.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
 
-        state = State.flying;
         //trigger animation
         m_Anim.SetBool("Crouch", false);
         m_Anim.SetBool("Jump", true);
@@ -158,6 +160,21 @@ public class Movement : MonoBehaviour
         yield return new WaitForSeconds(1f);
         yield return null;
     }
+
+    private void togglePositionFreeze(bool freeze)
+    {
+        if (freeze)
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezePosition;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+    }
+
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -194,6 +211,7 @@ public class Movement : MonoBehaviour
         spaceman.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
         yield return new WaitForSeconds(0.5f);
         state = State.idle;
+        togglePositionFreeze(true);
         yield return null;
     }
 }
