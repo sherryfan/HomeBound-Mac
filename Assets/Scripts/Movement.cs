@@ -8,7 +8,6 @@ public class Movement : MonoBehaviour
     public Animator m_Anim;
 
     public float speed = 1f;
-    public bool stop = false;
     public GameObject spaceman, // the sprite of player
     fart,
     direction, // the sprite for direction indication
