@@ -55,7 +55,7 @@ public class Movement : MonoBehaviour
                     isRotating = false;
                     FlyOneTime();
                 }
-                else
+                else if(state == State.crouch)
                 {
                     StartCoroutine(Launch());
                 }
@@ -109,14 +109,10 @@ public class Movement : MonoBehaviour
     void FlyOneTime()
     {
         StartCoroutine(Fart());
+        state = State.landing;
+
         Vector2 flyDirection = spaceman.transform.position - directionEnd.transform.position;
         rb.AddForce(flyDirection * speed);
-
-        state = State.landing;
-        //trigger animation
-        m_Anim.SetBool("Crouch", false);
-        m_Anim.SetBool("Jump", true);
-
         if (flyDirection != Vector2.zero)
         {
             float angle = Mathf.Atan2(flyDirection.y, flyDirection.x) * Mathf.Rad2Deg;
@@ -139,6 +135,8 @@ public class Movement : MonoBehaviour
     IEnumerator Launch()
     {
         rb.AddForce(spaceman.transform.up * speed);
+        direction.SetActive(true);
+        direction.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
 
         state = State.flying;
         //trigger animation
@@ -146,7 +144,6 @@ public class Movement : MonoBehaviour
         m_Anim.SetBool("Jump", true);
 
         yield return new WaitForSeconds(1f);
-        direction.SetActive(true);
         yield return null;
     }
 
