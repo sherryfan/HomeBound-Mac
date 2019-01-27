@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class ReadyGroupController : MonoBehaviour
 {
     public float FloatHeight = 1f;
@@ -23,6 +24,9 @@ public class ReadyGroupController : MonoBehaviour
     private Transform _p1Transform, _p2Transform;
     private Vector3 _p1Origin, _p2Origin;
 
+    public bool p1In, p2In;
+    public GameObject StartPage, Tutorial;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,14 +46,30 @@ public class ReadyGroupController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine(P1FlashJoined());
+            p1In = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
             StartCoroutine(P2FlashJoined());
+            p2In = true;
         }
+
+        if (p1In && p2In)
+        {
+            StartCoroutine(LoadTutorial());
+        }
+
+       
     }
 
+    private IEnumerator LoadTutorial()
+    {
+        yield return new WaitForSeconds(2f);
+        StartPage.SetActive(false);
+        Tutorial.SetActive(true);
+
+    }
 
     private IEnumerator P1FlashJoined()
     {
@@ -59,7 +79,7 @@ public class ReadyGroupController : MonoBehaviour
         _p1Press.SetActive(false);
         _p1Joined.SetActive(true);
 
-        if(_p2Ready)
+        if (_p2Ready)
         {
             StartCoroutine(Proceed());
         }
@@ -89,7 +109,7 @@ public class ReadyGroupController : MonoBehaviour
         var flash = true;
         while (true)
         {
-            _p2Joined.GetComponent<Text>().color = flash ? new Color(1,0.8f,0.8f): Color.white;
+            _p2Joined.GetComponent<Text>().color = flash ? new Color(1, 0.8f, 0.8f) : Color.white;
 
             flash = !flash;
 

@@ -27,8 +27,9 @@ public class TransitionUI : MonoBehaviour
     }
 
     IEnumerator LoadNextScene(){
+        planets[GameStats.level].gameObject.SetActive(true);
         tmp[GameStats.level].gameObject.SetActive(true);
-        tmp[GameStats.level].text = "Day " + GameStats.day + text[GameStats.level];
+        tmp[GameStats.level].text = "Day " + GameStats.day + " "+ text[GameStats.level];
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene(GameStats.level + 1);
         GameStats.level++;

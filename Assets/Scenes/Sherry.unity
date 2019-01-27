@@ -655,6 +655,7 @@ MonoBehaviour:
   range: {fileID: 1808800619}
   spacemanA: {fileID: 183685055}
   spacemanB: {fileID: 2110435507}
+  attractRange: 4
   movement: {fileID: 182149379}
 --- !u!50 &182149378
 Rigidbody2D:
@@ -697,6 +698,10 @@ MonoBehaviour:
   direction: {fileID: 1468628095}
   directionEnd: {fileID: 2138662035}
   EndGameUI: {fileID: 2000210599}
+  SoundEffect: {fileID: 0}
+  SoundOnLandingNormal: {fileID: 0}
+  SoundOnDeath: {fileID: 0}
+  SoundWhenThrust: {fileID: 0}
   state: 0
   isRotating: 0
   min_velocity: 1
@@ -1115,7 +1120,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &441888674
 GameObject:
@@ -1190,6 +1195,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a053da097da07448a9239e863b8b2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoundEffect: {fileID: 0}
+  Crumble: {fileID: 0}
+  Break: {fileID: 0}
+  Platforms: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,7 +1279,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &643987890
 PrefabInstance:
@@ -1415,7 +1424,7 @@ Transform:
   m_Children:
   - {fileID: 1234804173}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &682936281
 PrefabInstance:
@@ -1859,7 +1868,7 @@ Transform:
   m_LocalScale: {x: 53.488476, y: 7.9640284, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &943685407
 GameObject:
@@ -1921,6 +1930,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a053da097da07448a9239e863b8b2b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoundEffect: {fileID: 0}
+  Crumble: {fileID: 0}
+  Break: {fileID: 0}
+  Platforms: []
 --- !u!1 &1038593032
 GameObject:
   m_ObjectHideFlags: 0
@@ -3196,6 +3209,10 @@ MonoBehaviour:
   direction: {fileID: 1038593032}
   directionEnd: {fileID: 758460127}
   EndGameUI: {fileID: 2000210599}
+  SoundEffect: {fileID: 0}
+  SoundOnLandingNormal: {fileID: 0}
+  SoundOnDeath: {fileID: 0}
+  SoundWhenThrust: {fileID: 0}
   state: 0
   isRotating: 0
   min_velocity: 1
@@ -3214,7 +3231,7 @@ Transform:
   - {fileID: 183685058}
   - {fileID: 1657592226}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!231 &1437342492
 SpringJoint2D:
@@ -3256,6 +3273,7 @@ MonoBehaviour:
   range: {fileID: 1991050785}
   spacemanA: {fileID: 183685055}
   spacemanB: {fileID: 2110435507}
+  attractRange: 4
   movement: {fileID: 1437342489}
 --- !u!120 &1437342494
 LineRenderer:
@@ -4216,7 +4234,7 @@ RectTransform:
   m_Children:
   - {fileID: 780161031}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

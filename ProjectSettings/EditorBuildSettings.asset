@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Transition UI.unity
     guid: dc5818a6de361264682522f7bab429b4
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: f12b1197f6fbf5a49bc39239cf5648c1
   m_configObjects: {}

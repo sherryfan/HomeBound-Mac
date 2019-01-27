@@ -869,11 +869,16 @@ MonoBehaviour:
   - {fileID: 1811552435}
   - {fileID: 1472663973}
   - {fileID: 735343506}
+  planets:
+  - {fileID: 1049756856}
+  - {fileID: 1241783478}
+  - {fileID: 1712789984}
+  - {fileID: 944836513}
   text:
-  - 
-  - 
-  - 
-  - 
+  - ' REACH PLANET - OCCION IV.'
+  - ' REACH PLANET - Zeimia 3H28.'
+  - ' REACH THE MOON. WE ARE CLOSE NOW...'
+  - ' REACH THE EARTH. WE ARE HOME...'
 --- !u!4 &201177082
 Transform:
   m_ObjectHideFlags: 0
@@ -973,7 +978,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &434889413
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1420,7 +1425,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &735343505
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2733,7 +2738,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1472663972
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3327,7 +3332,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1811552434
 RectTransform:
   m_ObjectHideFlags: 0
