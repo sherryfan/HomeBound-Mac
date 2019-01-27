@@ -16,13 +16,26 @@ public class BrokenPlatform : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision other) {
-        print("Collision");
+    private void OnCollisionEnter2D(Collision2D other) 
+    {
+       print("Collision");
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-       gameObject.SetActive(false);
+        StartCoroutine(JudgeExit(other.gameObject));
+    }
+
+    private IEnumerator JudgeExit(GameObject other)
+    {
+        if(other.GetComponent<Movement>().state != Movement.State.idle && other.GetComponent<Movement>().state!=Movement.State.landing)
+        {
+            this.gameObject.SetActive(false);
+            print("ExitPlatform");
+            StopAllCoroutines();
+        }
+        yield return new WaitForSeconds(0.05f);
+        StartCoroutine(JudgeExit(other));
     }
 
 }
