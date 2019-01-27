@@ -53,7 +53,7 @@ public class Movement : MonoBehaviour
                 if (state == State.flying)
                 {
                     isRotating = false;
-                    Fly();
+                    FlyOneTime();
                 }
                 else
                 {
@@ -86,7 +86,7 @@ public class Movement : MonoBehaviour
                 if (state == State.flying)
                 {
                     isRotating = false;
-                    Fly();
+                    FlyOneTime();
                 }
                 else
                 {
@@ -106,25 +106,24 @@ public class Movement : MonoBehaviour
 
     }
 
-    void Fly()
+    void FlyOneTime()
     {
         StartCoroutine(Fart());
         Vector2 flyDirection = spaceman.transform.position - directionEnd.transform.position;
         rb.AddForce(flyDirection * speed);
-        if (state != State.flying)
-        {
-            state = State.flying;
-            //trigger animation
-            m_Anim.SetBool("Crouch", false);
-            m_Anim.SetBool("Jump", true);
-        }
+
+        state = State.landing;
+        //trigger animation
+        m_Anim.SetBool("Crouch", false);
+        m_Anim.SetBool("Jump", true);
+
         if (flyDirection != Vector2.zero)
         {
             float angle = Mathf.Atan2(flyDirection.y, flyDirection.x) * Mathf.Rad2Deg;
             spaceman.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         }
-        print("previous velocity: " + GetComponent<Rigidbody2D>().velocity.magnitude);
+        //print("previous velocity: " + GetComponent<Rigidbody2D>().velocity.magnitude);
     }
 
     IEnumerator Fart()
@@ -134,7 +133,6 @@ public class Movement : MonoBehaviour
         direction.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(1.2f);
         fart.SetActive(false);
-        direction.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
         yield return null;
     }
 
@@ -172,7 +170,7 @@ public class Movement : MonoBehaviour
     IEnumerator Land(Collision2D other)
     {
         rb.velocity = Vector2.zero;
-        
+
         m_Anim.SetBool("Jump", false);
         m_Anim.SetBool("Land", true);
 
