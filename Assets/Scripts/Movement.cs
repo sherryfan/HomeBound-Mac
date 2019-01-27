@@ -66,12 +66,15 @@ public class Movement : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Return))
             {
-                //print("space down");
-                isRotating = true;
-                if (state != State.crouch)
+                if (state == State.flying)
+                {
+                    isRotating = true;
+                }
+                else if (state != State.crouch)
                 {
                     state = State.crouch;
                     //trigger animation
+                    print("crouch");
                     m_Anim.SetBool("Land", false);
                     m_Anim.SetBool("Crouch", true);
                 }

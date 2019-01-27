@@ -1580,7 +1580,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 646362675}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1706,7 +1706,7 @@ MonoBehaviour:
   currentPostion: {x: 0, y: 0}
   direction: {x: 0, y: 0}
   range: {fileID: 400128058}
-  spacemanA: {fileID: 372907516}
+  spacemanA: {fileID: 183685055}
   spacemanB: {fileID: 372907516}
   movement: {fileID: 646362680}
 --- !u!50 &646362679
@@ -2549,7 +2549,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437342487}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
