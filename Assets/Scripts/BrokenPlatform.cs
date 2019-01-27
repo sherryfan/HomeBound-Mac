@@ -1,9 +1,13 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BrokenPlatform : MonoBehaviour
 {
+    public AudioSource SoundEffect;
+    public AudioClip Crumble, Break;
+
+    public GameObject[] Platforms;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +23,7 @@ public class BrokenPlatform : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) 
     {
        print("Collision");
+        SoundEffect.PlayOneShot(Crumble);
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -30,6 +35,15 @@ public class BrokenPlatform : MonoBehaviour
     {
         if(other.GetComponent<Movement>().state == Movement.State.flying)
         {
+            SoundEffect.PlayOneShot(Break);
+
+            foreach (GameObject seg in Platforms)
+            {
+                seg.SetActive(false);
+            }
+
+            yield return new WaitForSeconds(2f);
+
             this.gameObject.SetActive(false);
             print("ExitPlatform");
             StopAllCoroutines();

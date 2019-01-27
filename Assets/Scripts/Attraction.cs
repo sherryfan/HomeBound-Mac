@@ -28,6 +28,9 @@ public class Attraction : MonoBehaviour
     [SerializeField]
     GameObject spacemanB;
 
+    [SerializeField]
+    float attractRange = 4f;
+
     public Movement movement;
 
     private Movement anothermovement;
@@ -69,7 +72,7 @@ public class Attraction : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.L))
+            if (Input.GetKey(KeyCode.Delete))
             {
                 Onattract(this.gameObject.name);
             }
@@ -87,7 +90,7 @@ public class Attraction : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyUp(KeyCode.L))
+            if (Input.GetKeyUp(KeyCode.Delete))
             {
                 Onreleaseattract();
             }
@@ -97,7 +100,7 @@ public class Attraction : MonoBehaviour
     private void Onattract(string Objectname)
     {
         range.SetActive(true);
-        if (movement.state == Movement.State.idle && anothermovement.state != Movement.State.idle && distance <= 6.5f)
+        if (movement.state == Movement.State.idle && anothermovement.state != Movement.State.idle && distance <= attractRange)
         {
             linerender.enabled = true;
             linerender.SetPosition(0, spacemanA.transform.position + new Vector3(0f, 0f, -1f));

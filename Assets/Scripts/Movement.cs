@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -13,6 +13,10 @@ public class Movement : MonoBehaviour
     direction, // the sprite for direction indication
     directionEnd, //for calculation of the movement direction
     EndGameUI;
+
+    public AudioSource SoundEffect;
+
+    public AudioClip SoundOnLandingNormal, SoundOnDeath, SoundWhenThrust;
 
     public enum State { idle = 0, crouch, flying, landing };
     public State state;
@@ -140,6 +144,7 @@ public class Movement : MonoBehaviour
     {
         fart.SetActive(true);
         fart.GetComponent<Animator>().SetTrigger("Fart");
+        SoundEffect.PlayOneShot(SoundWhenThrust);
         direction.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(1.2f);
         fart.SetActive(false);
@@ -154,6 +159,8 @@ public class Movement : MonoBehaviour
         rb.AddForce(spaceman.transform.up * speed);
         direction.SetActive(true);
         direction.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+
+        SoundEffect.PlayOneShot(SoundWhenThrust);
 
         //trigger animation
         m_Anim.SetBool("Crouch", false);
@@ -178,10 +185,13 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        print(other.gameObject.name);
         if (other.gameObject.tag == "Station")
         {
             state = State.landing;
             StartCoroutine(Land(other));
+            SoundEffect.PlayOneShot(SoundOnLandingNormal);
+
         }
 
         if (other.gameObject.tag == "Death")
@@ -189,14 +199,17 @@ public class Movement : MonoBehaviour
             rb.velocity = Vector2.zero;
             state = State.idle;
             m_Anim.SetTrigger("Death");
+            SoundEffect.PlayOneShot(SoundOnDeath);
             //Game Over
             EndGameUI.SetActive(true);
+            StartCoroutine("GameOver");
         }
     }
 
     IEnumerator Land(Collision2D other)
     {
         rb.velocity = Vector2.zero;
+
 
         m_Anim.SetBool("Jump", false);
         m_Anim.SetBool("Land", true);
@@ -210,9 +223,18 @@ public class Movement : MonoBehaviour
             angle = -angle;
         }
         spaceman.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+        togglePositionFreeze(true);
         yield return new WaitForSeconds(0.5f);
         state = State.idle;
-        togglePositionFreeze(true);
+        //togglePositionFreeze(true);
         yield return null;
+    }
+
+    IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(2f);
+        //GameStats.day = GameObject.Find("EndPlanet").GetComponent<GameController>().day;
+        //GameStats.remainTime = GameObject.Find("EndPlanet").GetComponent<GameController>().howLongIsADay;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
