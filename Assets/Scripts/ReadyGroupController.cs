@@ -2,9 +2,8 @@
 
 public class ReadyGroupController : MonoBehaviour
 {
-    public float MaxSpriteSize = 1.3f, MinSpriteSize = 0.6f;
-    public float HalfCycleTime = 5f;
-
+    public float FloatHeight = 1f;
+    public float P1HalfCycle = 1f, P2HalfCycle = 1f;
 
     [SerializeField]
     private GameObject _p1, _p2;
@@ -14,12 +13,15 @@ public class ReadyGroupController : MonoBehaviour
 
     private bool _p1Ready = false, _p2Ready = false;
     private Transform _p1Transform, _p2Transform;
+    private Vector3 _p1Origin, _p2Origin;
 
     // Start is called before the first frame update
     void Start()
     {
-        _p1Transform = _p1.GetComponent<Transform>();
-        _p2Transform = _p2.GetComponent<Transform>();
+        _p1Transform = _p1.transform;
+        _p1Origin = _p1Transform.localPosition;
+        _p2Transform = _p2.transform;
+        _p2Origin = _p2Transform.localPosition;
     }
 
     // Update is called once per frame
@@ -44,8 +46,8 @@ public class ReadyGroupController : MonoBehaviour
             _p2Transform.localScale = Vector3.one;
             //Changes the sprite of P2 Ready, along with the size.
         }
-        _p1Transform.localScale = Vector3.one * Mathf.SmoothStep(MinSpriteSize, MaxSpriteSize, Mathf.PingPong(Time.time / HalfCycleTime, 1));
-        _p2Transform.localScale = Vector3.one * Mathf.SmoothStep(MinSpriteSize, MaxSpriteSize, Mathf.PingPong(Time.time / HalfCycleTime, 1));
+        _p1Transform.localPosition = _p1Origin + Vector3.up * FloatHeight * Mathf.SmoothStep(-1, 1, Mathf.PingPong(Time.time / P1HalfCycle, 1));
+        _p2Transform.localPosition = _p2Origin + Vector3.up * FloatHeight * Mathf.SmoothStep(-1, 1, Mathf.PingPong(Time.time / P2HalfCycle, 1));
 
 
     }
