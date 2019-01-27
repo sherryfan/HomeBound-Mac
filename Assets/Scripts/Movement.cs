@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
@@ -13,6 +12,10 @@ public class Movement : MonoBehaviour
     direction, // the sprite for direction indication
     directionEnd, //for calculation of the movement direction
     EndGameUI;
+
+    public AudioSource SoundEffect;
+
+    public AudioClip SoundOnLandingNormal, SoundOnDeath, SoundWhenThrust;
 
     public enum State { idle = 0, crouch, flying, landing };
     public State state;
@@ -140,6 +143,7 @@ public class Movement : MonoBehaviour
     {
         fart.SetActive(true);
         fart.GetComponent<Animator>().SetTrigger("Fart");
+        SoundEffect.PlayOneShot(SoundWhenThrust);
         direction.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(1.2f);
         fart.SetActive(false);
@@ -154,6 +158,8 @@ public class Movement : MonoBehaviour
         rb.AddForce(spaceman.transform.up * speed);
         direction.SetActive(true);
         direction.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+
+        SoundEffect.PlayOneShot(SoundWhenThrust);
 
         //trigger animation
         m_Anim.SetBool("Crouch", false);
@@ -183,6 +189,8 @@ public class Movement : MonoBehaviour
         {
             state = State.landing;
             StartCoroutine(Land(other));
+            SoundEffect.PlayOneShot(SoundOnLandingNormal);
+
         }
 
         if (other.gameObject.tag == "Death")
@@ -190,6 +198,7 @@ public class Movement : MonoBehaviour
             rb.velocity = Vector2.zero;
             state = State.idle;
             m_Anim.SetTrigger("Death");
+            SoundEffect.PlayOneShot(SoundOnDeath);
             //Game Over
             EndGameUI.SetActive(true);
         }
