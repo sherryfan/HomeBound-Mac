@@ -188,6 +188,7 @@ public class Movement : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
             state = State.idle;
+            m_Anim.SetTrigger("Death");
             //Game Over
             EndGameUI.SetActive(true);
         }
