@@ -204,13 +204,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3278596}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.07, y: -2.48, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.14728884, w: 0.98909354}
+  m_LocalPosition: {x: -3.52, y: 2.96, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 16.94}
 --- !u!1 &50618482
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,7 +266,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: b4f171f9b79765345b31993c0001e64f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b20fb8cf16cd2d049b78f7835f377337, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -285,8 +285,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50618482}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.95, y: -1.24, z: -0.0993201}
-  m_LocalScale: {x: 1.491972, y: 1.5880518, z: 0.23156}
+  m_LocalPosition: {x: 4.32, y: -0.45, z: -0.0993201}
+  m_LocalScale: {x: 1.1092812, y: 1.1807165, z: 0.17216486}
   m_Children: []
   m_Father: {fileID: 1049756857}
   m_RootOrder: 0
@@ -1476,7 +1476,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f580464ebd41755468ef8c3ff8a8968d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tmp: {fileID: 434889414}
+  tmp: []
+  planets: []
+  text:
+  - ' REACH PLANET - OCCION IV.'
+  - ' REACH PLANET - Zeimia 3H28.'
+  - ' REACH THE MOON. WE ARE CLOSE NOW...'
+  - ' REACH THE EARTH. WE ARE HOME...'
 --- !u!58 &1049756859
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1484,7 +1490,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049756856}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -1686,13 +1692,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148724633}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.45, y: -1.95, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.11445169, w: 0.9934289}
+  m_LocalPosition: {x: -2.15, y: 3.29, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.144001}
 --- !u!1 &1154632660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,13 +1791,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1154632660}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.96, y: -1.78, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.42736292, w: 0.9040802}
+  m_LocalPosition: {x: -0.97, y: 2.49, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -50.601}
 --- !u!1 &1234804172
 GameObject:
   m_ObjectHideFlags: 0
@@ -2410,13 +2416,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711523862}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.74, y: -2.49, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: 0.3812174, w: 0.9244854}
+  m_LocalPosition: {x: -4.57, y: 2.19, z: 0}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 44.818}
 --- !u!1 &1808800619
 GameObject:
   m_ObjectHideFlags: 0
