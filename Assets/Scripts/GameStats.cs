@@ -5,6 +5,7 @@ using UnityEngine;
 public static class GameStats
 {
     // Start is called before the first frame update
-    private static string playerA, playerB;
-    private static int level = 0, day = 0; 
+    public static string playerA, playerB;
+    public static int level = 0, day = 0; 
+
 }
