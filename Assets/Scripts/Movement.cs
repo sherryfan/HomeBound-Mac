@@ -159,6 +159,8 @@ public class Movement : MonoBehaviour
         direction.SetActive(true);
         direction.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
 
+        SoundEffect.PlayOneShot(SoundWhenThrust);
+
         //trigger animation
         m_Anim.SetBool("Crouch", false);
         m_Anim.SetBool("Jump", true);
