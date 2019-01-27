@@ -48,8 +48,8 @@ public class Attraction : MonoBehaviour
 
     void Update()
     {
-        distance = Vector2.Distance(anotherPlayer.transform.position, transform.position);
-        direction = anotherPlayer.transform.position - transform.position;
+        distance = Vector2.Distance(spacemanA.transform.position, spacemanB.transform.position);
+        direction = spacemanB.transform.position - spacemanA.transform.position;
     }
 
     void FixedUpdate()
