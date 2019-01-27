@@ -102,7 +102,14 @@ public class Attraction : MonoBehaviour
             linerender.enabled = true;
             linerender.SetPosition(0, spacemanA.transform.position + new Vector3(0f, 0f, -1f));
             linerender.SetPosition(1, spacemanB.transform.position + new Vector3(0f, 0f, -1f));
-            anotherrigidbody.AddForce(-direction * velocity);
+            if(this.gameObject.name == "PlayerA")
+            {
+                anotherrigidbody.AddForce(-direction * velocity);
+            }
+            else
+            {
+                anotherrigidbody.AddForce(direction * velocity);
+            }
             thisrigidbody.constraints = RigidbodyConstraints2D.FreezeAll;
             print(Objectname +  "attracts");
         }
