@@ -17,6 +17,7 @@ public class Movement : MonoBehaviour
     public enum State { idle = 0, crouch, flying, landing };
     public State state;
     public bool isRotating = false;
+    public float min_velocity = 1f;
 
     private Rigidbody2D rb;
     void Start()
@@ -28,6 +29,13 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(rb.velocity.magnitude < min_velocity)
+        {
+            Vector2 temp_velocity = rb.velocity;
+            temp_velocity = min_velocity / rb.velocity.magnitude * temp_velocity;
+            rb.velocity = temp_velocity;
+        }
+
         if (isPlayerA)
         {
             if (Input.GetKey("space"))

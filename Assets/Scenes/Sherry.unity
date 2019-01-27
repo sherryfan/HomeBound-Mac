@@ -1631,6 +1631,7 @@ MonoBehaviour:
   EndGameUI: {fileID: 2000210599}
   state: 0
   isRotating: 0
+  min_velocity: 1
 --- !u!4 &646362681
 Transform:
   m_ObjectHideFlags: 0
@@ -2478,6 +2479,7 @@ MonoBehaviour:
   EndGameUI: {fileID: 2000210599}
   state: 0
   isRotating: 0
+  min_velocity: 1
 --- !u!4 &1437342490
 Transform:
   m_ObjectHideFlags: 0
