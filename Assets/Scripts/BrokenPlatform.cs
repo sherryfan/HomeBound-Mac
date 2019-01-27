@@ -28,7 +28,7 @@ public class BrokenPlatform : MonoBehaviour
 
     private IEnumerator JudgeExit(GameObject other)
     {
-        if(other.GetComponent<Movement>().state != Movement.State.idle && other.GetComponent<Movement>().state!=Movement.State.landing)
+        if(other.GetComponent<Movement>().state == Movement.State.flying)
         {
             this.gameObject.SetActive(false);
             print("ExitPlatform");
