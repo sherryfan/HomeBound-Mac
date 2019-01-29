@@ -90,7 +90,7 @@ public class Attraction : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyUp(KeyCode.Delete)|| Input.GetKey(KeyCode.Backspace))
+            if (Input.GetKeyUp(KeyCode.Delete) || Input.GetKeyUp(KeyCode.Backspace))
             {
                 Onreleaseattract();
             }
@@ -102,6 +102,7 @@ public class Attraction : MonoBehaviour
         range.SetActive(true);
         if (movement.state == Movement.State.idle && anothermovement.state != Movement.State.idle && distance <= attractRange)
         {
+            print(Input.GetKey(KeyCode.Backspace));
             linerender.enabled = true;
             linerender.SetPosition(0, spacemanA.transform.position + new Vector3(0f, 0f, -1f));
             linerender.SetPosition(1, spacemanB.transform.position + new Vector3(0f, 0f, -1f));
