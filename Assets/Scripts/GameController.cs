@@ -39,6 +39,11 @@ public class GameController : MonoBehaviour
             GameStats.remainTime = howLongIsADay;
             StartCoroutine(EndScene());
         }
+
+        if (Input.GetKey(KeyCode.J))
+        {
+            SceneManager.LoadScene(5);
+        }
     }
 
     IEnumerator EndScene()

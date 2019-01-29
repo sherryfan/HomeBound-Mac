@@ -72,7 +72,7 @@ public class Attraction : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.Delete))
+            if (Input.GetKey(KeyCode.Delete) || Input.GetKey(KeyCode.Backspace))
             {
                 Onattract(this.gameObject.name);
             }
@@ -90,7 +90,7 @@ public class Attraction : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyUp(KeyCode.Delete))
+            if (Input.GetKeyUp(KeyCode.Delete)|| Input.GetKey(KeyCode.Backspace))
             {
                 Onreleaseattract();
             }

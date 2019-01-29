@@ -872,23 +872,7 @@ MonoBehaviour:
   - {fileID: 1241783478}
   - {fileID: 1712789984}
   - {fileID: 944836513}
-  text:
-  - ' "THE MARTIAN" IS THE FIRST THING THAT POPPED UP IN MY HEAD AS SOON AS I REALIZE
-    I WAS IN SPACE...BUT WAIT, HE''S STRANDED ON MARS, WE''RE IN SPACE. ALONE.                                   IN
-    SPACE NO ONE CAN HEAR YOU SCREAM, SO WE''D BETTER GET TO IT.                                                                        TO
-    OCCION IV WE GO.'
-  - I CAN'T HELP BUT APPRECIATE HOW SPACE TECH HAS EVOLVED THROUGH THE YEARS. I COULDN'T
-    IMAGINE HOW WE'D SURVIVE IF THIS HAPPENED YEARS AGO.                                        IF
-    YOU'RE WONDERING WHY I'M SO CHILLED, GOD, IT'S BECAUSE THERE'S NO TIME TO PANIC.
-    AND IT IS CHILLY HERE.                                   WE'RE STOPPING AT ZEIMIA-3H28.....HOLD
-    ON, IS THAT A BLACK HOLE?
-  - WE NEARLY DIED OUT THERE.... THE BLACK HOLE COULD'VE TORN US INTO PIECES.                                      UGH...
-    THAT WAS TOO CLOSE. BREATHE. BREATHE.                                               BUT
-    WE MADE IT. WE'RE HERE AT THE MOON. WE'RE CLOSE TO HOME.
-  - HOW FAR HAVE WE TRAVELED? I DON'T KNOW. NEVER SPENT THIS MUCH TIME TALKING TO
-    MYSELF. EVEN IN A SITUATION LIKE THIS, I COULDN'T POSSIBLY LET MY MATE HEAR ME
-    BABBLING NONSENSE.                  I KINDA APPRECIATED IT. KEEPS ME SANE.                                                 TO
-    EARTH, FRIENDS. I'M COMING HOME.
+  realText: []
   planetNames:
   - OCCION IV
   - ZEIMIA-3H28
@@ -1097,16 +1081,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434889412}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.117539845, y: 0.1288108, z: 0.1288108}
+  m_LocalScale: {x: 0.1372592, y: 0.15042102, z: 0.15042102}
   m_Children: []
-  m_Father: {fileID: 576164969}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -959.12, y: -536.57}
+  m_AnchoredPosition: {x: 0, y: 3.58}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &434889414
@@ -1371,6 +1355,7 @@ GameObject:
   - component: {fileID: 576164969}
   - component: {fileID: 576164968}
   - component: {fileID: 576164967}
+  - component: {fileID: 576164970}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -1427,8 +1412,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 434889413}
-  - {fileID: 1811552434}
   - {fileID: 1472663972}
   - {fileID: 735343505}
   m_Father: {fileID: 0}
@@ -1439,6 +1422,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &576164970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576164966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 1980, y: 1080}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
 --- !u!1 &576380984
 GameObject:
   m_ObjectHideFlags: 0
@@ -1547,7 +1552,7 @@ RectTransform:
   m_LocalScale: {x: 0.117539845, y: 0.1288108, z: 0.1288108}
   m_Children: []
   m_Father: {fileID: 576164969}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2824,7 +2829,7 @@ RectTransform:
   m_LocalScale: {x: 0.117539845, y: 0.1288108, z: 0.1288108}
   m_Children: []
   m_Father: {fileID: 576164969}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3395,16 +3400,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1811552433}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.117539845, y: 0.1288108, z: 0.1288108}
+  m_LocalScale: {x: 0.1372592, y: 0.15042102, z: 0.15042102}
   m_Children: []
-  m_Father: {fileID: 576164969}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -959.12, y: -537.57}
+  m_AnchoredPosition: {x: 0, y: 2.58}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1811552435
