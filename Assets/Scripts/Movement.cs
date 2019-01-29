@@ -205,8 +205,21 @@ public class Movement : MonoBehaviour
             StartCoroutine("GameOver");
         }
     }
+    public IEnumerator TutorialLand(){
+        
+        rb.velocity = Vector2.zero;
 
-    IEnumerator Land(Collision2D other)
+        m_Anim.SetBool("Jump", false);
+        m_Anim.SetBool("Land", true);
+        yield return new WaitForSeconds(0.1f);
+        direction.SetActive(true);
+        direction.transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+        state = State.idle;
+        togglePositionFreeze(true);
+        SoundEffect.PlayOneShot(SoundOnLandingNormal);
+    
+    }
+    public IEnumerator Land(Collision2D other)
     {
         rb.velocity = Vector2.zero;
 
